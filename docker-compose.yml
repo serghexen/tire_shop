@@ -1,0 +1,7 @@
+services:
+  tire-shop:
+    build: .
+    container_name: tire-shop-landing
+    ports:
+      - "80:80"
+    restart: unless-stopped
