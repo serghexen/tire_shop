@@ -332,19 +332,18 @@ onBeforeUnmount(() => {
       <div class="about-layout">
         <div class="about-img-side reveal">
           <div class="about-img-box">
-            <svg class="about-tire-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="100" cy="100" r="90" stroke="white" stroke-width="2" />
-              <circle cx="100" cy="100" r="70" stroke="white" stroke-width="8" />
-              <circle cx="100" cy="100" r="30" stroke="white" stroke-width="2" />
-              <line x1="100" y1="10" x2="100" y2="70" stroke="white" stroke-width="2" />
-              <line x1="100" y1="130" x2="100" y2="190" stroke="white" stroke-width="2" />
-              <line x1="10" y1="100" x2="70" y2="100" stroke="white" stroke-width="2" />
-              <line x1="130" y1="100" x2="190" y2="100" stroke="white" stroke-width="2" />
-              <line x1="36" y1="36" x2="79" y2="79" stroke="white" stroke-width="2" />
-              <line x1="121" y1="121" x2="164" y2="164" stroke="white" stroke-width="2" />
-              <line x1="164" y1="36" x2="121" y2="79" stroke="white" stroke-width="2" />
-              <line x1="79" y1="121" x2="36" y2="164" stroke="white" stroke-width="2" />
-            </svg>
+            <div class="about-service-visual">
+              <div class="about-rack"></div>
+              <div class="about-rack"></div>
+              <div class="about-rack"></div>
+              <div class="about-rack"></div>
+              <div class="about-visual-tag">СЕРВИС · ШИНЫ · ДИСКИ</div>
+            </div>
+            <div class="about-info-panel">
+              <div class="about-info-kicker">Склад и сервис</div>
+              <div class="about-info-title">Подбор за 15 минут</div>
+              <div class="about-info-meta">Шины в наличии · Монтаж в день покупки</div>
+            </div>
           </div>
           <div class="about-accent-box">
             <div class="about-accent-num">10</div>
@@ -957,26 +956,92 @@ section {
 .about-img-box {
   width: 100%;
   aspect-ratio: 4 / 5;
-  background: var(--gray-mid);
+  background:
+    radial-gradient(circle at 18% 22%, rgba(255, 77, 0, 0.2), transparent 36%),
+    linear-gradient(155deg, #2a2a2a 0%, #151515 54%, #101010 100%);
   position: relative;
   overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .about-img-box::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(255, 77, 0, 0.15) 0%, transparent 50%);
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.03) 0 1px,
+      transparent 1px 42px
+    );
 }
 
-.about-tire-svg {
+.about-service-visual {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 280px;
-  height: 280px;
-  opacity: 0.15;
+  left: 22px;
+  right: 22px;
+  top: 24px;
+  bottom: 128px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.about-rack {
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background:
+    radial-gradient(circle at 50% 44%, rgba(0, 0, 0, 0.75) 0 30%, transparent 31%),
+    radial-gradient(circle at 50% 44%, rgba(255, 255, 255, 0.18) 0 33%, transparent 34%),
+    repeating-radial-gradient(circle at 50% 44%, rgba(255, 255, 255, 0.06) 0 2px, transparent 2px 9px),
+    linear-gradient(170deg, rgba(255, 255, 255, 0.06), rgba(0, 0, 0, 0.32));
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.4);
+}
+
+.about-visual-tag {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -8px;
+  margin: 0 auto;
+  width: fit-content;
+  background: rgba(10, 10, 10, 0.84);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 8px 14px;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.about-info-panel {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  background: rgba(8, 8, 8, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  padding: 14px 16px;
+}
+
+.about-info-kicker {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--orange);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.about-info-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 34px;
+  letter-spacing: 0.03em;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.about-info-meta {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.72);
 }
 
 .about-accent-box {
@@ -1310,6 +1375,12 @@ footer {
   .brands-featured,
   .reviews-grid {
     grid-template-columns: 1fr;
+  }
+
+  .hero-title {
+    font-size: clamp(56px, 17vw, 82px);
+    line-height: 0.95;
+    letter-spacing: 0.01em;
   }
 
   .hero-cta {

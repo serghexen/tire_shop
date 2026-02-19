@@ -28,11 +28,11 @@ npm run preview
 ssh <user>@<VDS_IP>
 ```
 
-### 2) Установить Docker и Compose plugin
+### 2) Установить Docker и docker-compose
 
 ```bash
 sudo apt update
-sudo apt install -y docker.io docker-compose-plugin
+sudo apt install -y docker.io docker-compose
 sudo systemctl enable --now docker
 sudo usermod -aG docker $USER
 newgrp docker
@@ -58,14 +58,14 @@ cd /home/<user>/tire_shop
 ### 4) Запустить контейнер
 
 ```bash
-docker compose up -d --build
+docker-compose up -d --build
 ```
 
 ### 5) Проверить состояние
 
 ```bash
-docker compose ps
-docker compose logs -f
+docker-compose ps
+docker-compose logs -f
 ```
 
 ### 6) Открыть порт 80 в firewall (если UFW включен)
