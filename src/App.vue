@@ -6,32 +6,32 @@ const wheelSrc = ref('/wheel.jpg');
 
 const services = [
   {
-    icon: '◉',
+    image: '/service-icons/tires.jpg',
     name: 'Продажа шин',
     desc: 'Летние, зимние и всесезонные шины от ведущих мировых производителей. Огромный ассортимент для легковых и внедорожников.'
   },
   {
-    icon: '⬡',
+    image: '/service-icons/disks.jpg',
     name: 'Продажа дисков',
     desc: 'Литые и штампованные диски. Широкий выбор размеров и крепежей. Подбор по марке и модели автомобиля.'
   },
   {
-    icon: '◈',
+    image: '/service-icons/mounting.jpg',
     name: 'Шиномонтаж',
     desc: 'Профессиональный монтаж легковых автомобилей и внедорожников. Ремонт порезов, прокатка дисков, ошиповка шин.'
   },
   {
-    icon: '⊚',
+    image: '/service-icons/balance.png',
     name: 'Балансировка',
     desc: 'Компьютерная балансировка колёс. Устраняем вибрацию и продлеваем срок службы ходовой части.'
   },
   {
-    icon: '▣',
+    image: '/service-icons/storage.jpg',
     name: 'Сезонное хранение',
     desc: 'Храним ваши шины в охраняемом складе весь сезон. Удобно, безопасно, с напоминанием о смене.'
   },
   {
-    icon: '◑',
+    image: '/service-icons/cosmetics.jpg',
     name: 'Автокосметика',
     desc: 'Японская автокосметика премиум-класса Eikosha. Автомасла на розлив, спецжидкости, автохимия.'
   }
@@ -229,7 +229,7 @@ onBeforeUnmount(() => {
     <nav>
       <a href="#hero" class="logo" @click="closeMenu">
         <img src="/logo.png" alt="Автореал" />
-        <span class="logo-text">АВТО<span>РЕАЛ</span></span>
+        <span class="logo-brand"><span class="logo-outlined">АВТО</span><span class="logo-solid">РЕАЛ</span></span>
       </a>
 
       <button class="menu-btn" @click="menuOpen = !menuOpen" aria-label="Открыть меню">
@@ -252,6 +252,9 @@ onBeforeUnmount(() => {
       <div class="hero-lines">
         <div class="hero-wheel">
           <img :src="wheelSrc" alt="" class="hero-wheel-img" />
+          <div class="hero-wheel-cap" aria-hidden="true">
+            <img src="/logo.png" alt="" class="hero-wheel-cap-logo" />
+          </div>
         </div>
       </div>
 
@@ -259,7 +262,7 @@ onBeforeUnmount(() => {
         <div class="hero-tag">Автореал — Диски &amp; Шины · Краснодар</div>
         <h1 class="hero-title">Твой<br /><span class="accent">Правильный</span>Выбор</h1>
         <p class="hero-sub">
-          Крупнейший в Краснодарском крае интернет-магазин шин и дисков. Шиномонтаж, балансировка,
+          Крупнейший в Краснодарском крае магазин шин и дисков. Шиномонтаж, балансировка,
           сезонное хранение и диагностика.
         </p>
       </div>
@@ -285,8 +288,10 @@ onBeforeUnmount(() => {
       <h2 class="section-title reveal">Наши Услуги</h2>
       <div class="services-grid reveal">
         <article class="service-card" v-for="(service, index) in services" :key="service.name">
+          <div class="service-ornament" aria-hidden="true">
+            <img :src="service.image" :alt="service.name" loading="lazy" />
+          </div>
           <div class="service-num">0{{ index + 1 }}</div>
-          <span class="service-icon">{{ service.icon }}</span>
           <div class="service-name">{{ service.name }}</div>
           <div class="service-desc">{{ service.desc }}</div>
         </article>
@@ -368,10 +373,7 @@ onBeforeUnmount(() => {
         <div class="about-img-side reveal">
           <div class="about-img-box">
             <div class="about-service-visual">
-              <div class="about-rack"></div>
-              <div class="about-rack"></div>
-              <div class="about-rack"></div>
-              <div class="about-rack"></div>
+              <img src="/about/wheel-building.jpg" alt="Колесо в сервисной зоне" class="about-service-photo" loading="lazy" />
               <div class="about-visual-tag">СЕРВИС · ШИНЫ · ДИСКИ</div>
             </div>
             <div class="about-info-panel">
@@ -390,7 +392,7 @@ onBeforeUnmount(() => {
           <div class="section-tag reveal">— О компании</div>
           <h2 class="section-title reveal" style="margin-bottom: 32px">Мы знаем<br />колёса</h2>
           <p class="about-lead reveal">
-            ООО «Автореал» — крупнейший в Краснодарском крае интернет-магазин шин, дисков и сопутствующих товаров для авто.
+            ООО «Автореал» — крупнейший в Краснодарском крае магазин шин, дисков и сопутствующих товаров для авто.
           </p>
           <p class="about-body reveal">
             Занимаясь шинами и дисками уже длительное время, наша компания готова предложить лучший ассортимент для притязательного автовладельца.
@@ -427,10 +429,7 @@ onBeforeUnmount(() => {
 
     <section id="cta">
       <div class="cta-bg"></div>
-      <h2 class="cta-title reveal">Готов к<br />сезону?</h2>
-      <p class="cta-sub reveal">
-        Напишите нам и мы перезвоним. Поможем подобрать шины и диски, оформим заказ или запишем на сервис.
-      </p>
+      <h2 class="cta-title reveal"><span>Подберём комплект</span><br /><span class="cta-title-accent">под ваш авто</span></h2>
       <div class="cta-btns reveal">
         <a :href="mainPhoneHref" class="btn-primary">{{ mainPhone }}</a>
         <a href="tel:+79284449500" class="btn-secondary">+7 (928) 444-95-00</a>
@@ -440,7 +439,7 @@ onBeforeUnmount(() => {
     <footer>
       <a href="#hero" class="footer-logo" @click="closeMenu">
         <img src="/logo.png" alt="Автореал" />
-        <span class="logo-text">АВТО<span>РЕАЛ</span></span>
+        <span class="logo-brand"><span class="logo-outlined">АВТО</span><span class="logo-solid">РЕАЛ</span></span>
       </a>
 
       <div class="footer-links">
@@ -459,6 +458,8 @@ onBeforeUnmount(() => {
 </template>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap&subset=cyrillic');
+
 nav {
   position: fixed;
   top: 0;
@@ -493,16 +494,23 @@ nav {
   display: block;
 }
 
-.logo-text {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 34px;
-  letter-spacing: 0.08em;
-  color: var(--white);
+.logo-brand {
+  font-family: 'Russo One', sans-serif;
+  font-size: 46px;
+  letter-spacing: 0.03em;
   line-height: 1;
+  display: inline-flex;
+  align-items: baseline;
+  white-space: nowrap;
 }
 
-.logo-text span {
-  color: var(--orange);
+.logo-outlined {
+  color: transparent;
+  -webkit-text-stroke: 1.5px #f0f2f6;
+}
+
+.logo-solid {
+  color: #ff5722;
 }
 
 .menu-btn {
@@ -585,6 +593,32 @@ nav ul a:hover {
   filter: contrast(1.06) brightness(1.03);
 }
 
+.hero-wheel-cap {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 17.5%;
+  aspect-ratio: 1 / 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 32% 30%, rgba(255, 255, 255, 0.22), rgba(18, 18, 18, 0.94) 64%),
+    #0d0d0d;
+  border: 2px solid rgba(255, 255, 255, 0.58);
+  box-shadow:
+    inset 0 0 10px rgba(0, 0, 0, 0.55),
+    0 6px 16px rgba(0, 0, 0, 0.4);
+  display: grid;
+  place-items: center;
+}
+
+.hero-wheel-cap-logo {
+  width: 68%;
+  height: 68%;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.35));
+}
+
 @keyframes spin-slow {
   to {
     transform: translateY(-50%) rotate(360deg);
@@ -647,7 +681,7 @@ nav ul a:hover {
 
 .hero-stats {
   position: absolute;
-  bottom: 60px;
+  bottom: 120px;
   left: 60px;
   right: 60px;
   display: flex;
@@ -712,15 +746,28 @@ section {
 .services-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1px;
+  gap: 16px;
   margin-top: 60px;
-  background: rgba(255, 255, 255, 0.06);
 }
 
 .service-card {
   background: var(--gray);
-  padding: 48px 36px;
+  padding: 52px 40px;
   position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  min-height: 320px;
+}
+
+.service-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 88% 14%, rgba(255, 77, 0, 0.18), transparent 36%),
+    linear-gradient(126deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0));
+  pointer-events: none;
 }
 
 .service-card::before {
@@ -744,10 +791,37 @@ section {
   transform: scaleX(1);
 }
 
-.service-icon {
-  font-size: 36px;
-  margin-bottom: 24px;
-  display: block;
+.service-ornament {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 42%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  border-left: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.service-ornament img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: grayscale(0.18) contrast(1.08) brightness(0.74);
+  opacity: 0.58;
+  transform: scale(1.04);
+  transition: transform 0.35s ease, opacity 0.35s ease, filter 0.35s ease;
+}
+
+.service-card:hover .service-ornament {
+  border-left-color: rgba(255, 77, 0, 0.3);
+}
+
+.service-card:hover .service-ornament img {
+  transform: scale(1.08);
+  opacity: 0.7;
+  filter: grayscale(0.06) contrast(1.1) brightness(0.86);
 }
 
 .service-num {
@@ -755,20 +829,26 @@ section {
   font-size: 72px;
   color: rgba(255, 255, 255, 0.04);
   position: absolute;
-  top: 16px;
-  right: 24px;
+  bottom: 12px;
+  left: 24px;
+  z-index: 2;
 }
 
 .service-name {
   font-size: 20px;
   font-weight: 700;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 2;
 }
 
 .service-desc {
   font-size: 14px;
   color: var(--muted);
   line-height: 1.7;
+  position: relative;
+  z-index: 2;
+  max-width: 58%;
 }
 
 .brands-header {
@@ -914,17 +994,17 @@ section {
 }
 
 .map-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  margin-top: 60px;
-  align-items: start;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  margin-top: 48px;
+  align-items: stretch;
 }
 
 .stores-list {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
 }
 
 .store-item {
@@ -984,7 +1064,7 @@ section {
 }
 
 .map-yandex {
-  height: 460px;
+  height: 520px;
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 14px;
   box-shadow: 0 12px 36px rgba(0, 0, 0, 0.28);
@@ -1055,20 +1135,26 @@ section {
   right: 22px;
   top: 24px;
   bottom: 128px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  overflow: hidden;
 }
 
-.about-rack {
-  border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+.about-service-visual::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   background:
-    radial-gradient(circle at 50% 44%, rgba(0, 0, 0, 0.75) 0 30%, transparent 31%),
-    radial-gradient(circle at 50% 44%, rgba(255, 255, 255, 0.18) 0 33%, transparent 34%),
-    repeating-radial-gradient(circle at 50% 44%, rgba(255, 255, 255, 0.06) 0 2px, transparent 2px 9px),
-    linear-gradient(170deg, rgba(255, 255, 255, 0.06), rgba(0, 0, 0, 0.32));
-  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.4);
+    linear-gradient(155deg, rgba(0, 0, 0, 0.58) 0%, rgba(0, 0, 0, 0.22) 44%, rgba(0, 0, 0, 0.66) 100%),
+    radial-gradient(circle at 18% 18%, rgba(255, 77, 0, 0.2), transparent 40%);
+}
+
+.about-service-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transform: scale(1.02);
 }
 
 .about-visual-tag {
@@ -1084,6 +1170,7 @@ section {
   font-size: 10px;
   letter-spacing: 0.14em;
   color: rgba(255, 255, 255, 0.82);
+  z-index: 2;
 }
 
 .about-info-panel {
@@ -1247,6 +1334,18 @@ section {
   margin: 0;
   position: relative;
   z-index: 1;
+  line-height: 0.9;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.cta-title span {
+  display: inline-block;
+}
+
+.cta-title-accent {
+  color: var(--orange);
+  text-shadow: 0 6px 26px rgba(255, 77, 0, 0.36);
 }
 
 .cta-sub {
@@ -1265,6 +1364,7 @@ section {
   flex-wrap: wrap;
   position: relative;
   z-index: 1;
+  margin-top: 38px;
 }
 
 .btn-primary,
@@ -1401,7 +1501,14 @@ footer {
     grid-template-columns: 1fr 1fr;
   }
 
-  .map-layout,
+  .stores-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .services-grid {
+    gap: 14px;
+  }
+
   .about-layout {
     grid-template-columns: 1fr;
     gap: 36px;
@@ -1409,6 +1516,10 @@ footer {
 
   .about-bg-text {
     display: none;
+  }
+
+  .service-desc {
+    max-width: 64%;
   }
 
   footer {
@@ -1456,6 +1567,22 @@ footer {
     grid-template-columns: 1fr;
   }
 
+  .stores-list {
+    grid-template-columns: 1fr;
+  }
+
+  .services-grid {
+    gap: 12px;
+  }
+
+  .service-ornament {
+    display: none;
+  }
+
+  .service-desc {
+    max-width: none;
+  }
+
   .hero-title {
     font-size: clamp(44px, 13.2vw, 62px);
     line-height: 1;
@@ -1499,8 +1626,8 @@ footer {
     height: 40px;
   }
 
-  .logo-text {
-    font-size: 28px;
+  .logo-brand {
+    font-size: 34px;
   }
 }
 </style>
