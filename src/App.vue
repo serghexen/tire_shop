@@ -629,7 +629,7 @@ nav ul a:hover {
   position: relative;
   z-index: 2;
   max-width: min(52vw, 760px);
-  margin-top: -90px;
+  margin-top: -190px;
 }
 
 .hero-tag {
@@ -640,7 +640,8 @@ nav ul a:hover {
   color: var(--orange);
   border: 1px solid var(--orange);
   padding: 6px 14px;
-  margin-bottom: 32px;
+  margin-top: -72px;
+  margin-bottom: 104px;
   transform: translateY(-18px);
   opacity: 0;
   animation: fade-up 0.8s 0.2s forwards;
@@ -681,7 +682,7 @@ nav ul a:hover {
 
 .hero-stats {
   position: absolute;
-  bottom: 120px;
+  bottom: 190px;
   left: 60px;
   right: 60px;
   display: flex;
@@ -1481,14 +1482,14 @@ footer {
   .hero-stats {
     left: 24px;
     right: 24px;
-    bottom: 32px;
+    bottom: 84px;
     gap: 26px;
     flex-wrap: wrap;
   }
 
   .hero-content {
     max-width: 100%;
-    margin-top: 0;
+    margin-top: -70px;
   }
 
   section {
@@ -1536,11 +1537,14 @@ footer {
 @media (max-width: 760px) {
   .menu-btn {
     display: block;
-    margin-left: auto;
+    margin-left: 0;
+    padding: 8px 12px;
+    font-size: 10px;
   }
 
   nav {
     flex-wrap: wrap;
+    padding: 16px 14px;
   }
 
   nav ul {
@@ -1619,7 +1623,7 @@ footer {
   }
 
   .logo img {
-    height: 48px;
+    height: 40px;
   }
 
   .footer-logo img {
@@ -1627,7 +1631,43 @@ footer {
   }
 
   .logo-brand {
-    font-size: 34px;
+    font-size: 24px;
+    letter-spacing: 0.02em;
+  }
+
+  .about-service-visual {
+    left: 14px;
+    right: 14px;
+    top: 14px;
+    bottom: 152px;
+  }
+
+  .about-visual-tag {
+    bottom: 10px;
+    padding: 6px 10px;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+  }
+
+  .about-info-panel {
+    left: 14px;
+    right: 14px;
+    bottom: 14px;
+    padding: 12px 12px;
+  }
+
+  .about-accent-box {
+    position: static;
+    width: auto;
+    max-width: 180px;
+    margin: 12px 0 0 auto;
+    right: auto;
+    bottom: auto;
+    padding: 14px 18px;
+  }
+
+  .about-accent-num {
+    font-size: 40px;
   }
 }
 </style>
