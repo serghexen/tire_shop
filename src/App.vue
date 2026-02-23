@@ -55,37 +55,71 @@ const allBrands = [
 ];
 
 const featuredBrands = [
-  { name: 'MICHELIN', origin: 'Франция', flag: '🇫🇷' },
-  { name: 'PIRELLI', origin: 'Италия', flag: '🇮🇹' },
-  { name: 'CONTINENTAL', origin: 'Германия', flag: '🇩🇪' },
-  { name: 'BRIDGESTONE', origin: 'Япония', flag: '🇯🇵' },
-  { name: 'NOKIAN', origin: 'Финляндия', flag: '🇫🇮' },
-  { name: 'LASSA', origin: 'Турция', flag: '🇹🇷' },
-  { name: 'YOKOHAMA', origin: 'Япония', flag: '🇯🇵' },
-  { name: 'HANKOOK', origin: 'Корея', flag: '🇰🇷' }
+  { name: 'MICHELIN', origin: 'Франция', logo: '/brand-logos/michelin-18.svg', zoom: '1.35' },
+  { name: 'PIRELLI', origin: 'Италия', logo: '/brand-logos/pirelli.svg', zoom: '1.08' },
+  { name: 'CONTINENTAL', origin: 'Германия', logo: '/brand-logos/continental-official.svg', zoom: '1.02' },
+  { name: 'BRIDGESTONE', origin: 'Япония', logo: '/brand-logos/bridgestone.svg', zoom: '1.08' },
+  { name: 'NOKIAN', origin: 'Финляндия', logo: '/brand-logos/nokian.svg', zoom: '1.08' },
+  { name: 'LASSA', origin: 'Турция', logo: '/brand-logos/lassa-red.jpg', zoom: '2.56' },
+  { name: 'YOKOHAMA', origin: 'Япония', logo: '/brand-logos/yokohama.svg', zoom: '1.08' },
+  { name: 'HANKOOK', origin: 'Корея', logo: '/brand-logos/hankook.svg', zoom: '1.08' }
 ];
+
+const mainPhone = '+7 (800) 777-0-735';
+const mainPhoneHref = 'tel:+78007770735';
 
 const stores = [
   {
-    name: 'Демуса',
-    addr: 'ул. Демуса, 9/9',
-    hours: 'Пн–Пт: 9:00–18:00, Сб: 9:00–15:00',
+    name: 'Офис-Склад',
+    addr: 'Краснодар, ул. Демуса 9/9',
+    schedule: ['ПН-ПТ 9:00 до 18:00', 'СБ 9:00 до 15:00', 'ВС Выходной'],
+    phones: [
+      { label: '8-928-444-75-00', href: 'tel:+79284447500' },
+      { label: '8-861-212-67-91', href: 'tel:+78612126791' },
+      { label: '8-861-212-67-92', href: 'tel:+78612126792' }
+    ],
     lat: 45.05346,
     lng: 39.09271
   },
   {
-    name: 'Старокубанская',
-    addr: 'ул. Старокубанская, 122/11',
-    hours: 'Пн–Вс: 9:00–19:00',
+    name: 'Шинный центр LASSA',
+    addr: 'Краснодар, ул. Дзержинского 132',
+    schedule: ['ПН-ВС 9:00 до 19:00'],
+    notes: ['Шиномонтаж, Сезонное хранение', 'Магазин Шины&Диски'],
+    phones: [
+      { label: '8-928-444-95-00', href: 'tel:+79284449500' },
+      { label: '8-929-837-05-87', href: 'tel:+79298370587' }
+    ],
+    lat: 45.08415,
+    lng: 39.0279
+  },
+  {
+    name: 'Шинный центр YOKOHAMA',
+    addr: 'Краснодар, ул. Старокубанская 122/11',
+    schedule: ['ПН-ВС 9:00 до 19:00'],
+    phones: [
+      { label: '8-902-407-22-01', href: 'tel:+79024072201' },
+      { label: '8-928-210-7000', href: 'tel:+79282107000' },
+      { label: '8-861-290-7000', href: 'tel:+78612907000' }
+    ],
     lat: 45.02476,
     lng: 39.00185
   },
   {
-    name: 'Дзержинского',
-    addr: 'ул. Дзержинского, 132',
-    hours: 'Пн–Вс: 9:00–19:00',
-    lat: 45.08415,
-    lng: 39.0279
+    name: 'Склад',
+    addr: 'Ростов-на-Дону, Вавилова 67Г',
+    schedule: ['ПН-ПТ 9:00 до 18:00'],
+    phones: [
+      { label: '8-909-40-23-254', href: 'tel:+79094023254' }
+    ]
+  },
+  {
+    name: 'Офис-Склад',
+    addr: 'Санкт-Петербург, Пушкинский район, посёлок Шушары, Московское шоссе, 15В · этаж 2, офис 2-9',
+    schedule: ['ПН-ПТ 9:00 до 18:00', 'СБ-ВС 10:00 до 17:00'],
+    phones: [
+      { label: '8-981-129-53-25', href: 'tel:+79811295325' }
+    ]
   }
 ];
 
@@ -210,7 +244,7 @@ onBeforeUnmount(() => {
         <li><a href="#reviews" @click="closeMenu">Отзывы</a></li>
       </ul>
 
-      <a href="tel:+79284449500" class="btn-primary nav-phone">+7 (928) 444-95-00</a>
+      <a :href="mainPhoneHref" class="btn-primary nav-phone">{{ mainPhone }}</a>
     </nav>
 
     <section id="hero">
@@ -228,10 +262,6 @@ onBeforeUnmount(() => {
           Крупнейший в Краснодарском крае интернет-магазин шин и дисков. Шиномонтаж, балансировка,
           сезонное хранение и диагностика.
         </p>
-        <div class="hero-cta">
-          <a href="tel:+79284449500" class="btn-primary">Позвонить</a>
-          <a href="#map" class="btn-ghost">Где мы находимся</a>
-        </div>
       </div>
 
       <div class="hero-stats">
@@ -246,10 +276,6 @@ onBeforeUnmount(() => {
         <div class="stat-item">
           <div class="stat-num">100<span>+</span></div>
           <div class="stat-label">Брендов в наличии</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">0<span>%</span></div>
-          <div class="stat-label">Рассрочка</div>
         </div>
       </div>
     </section>
@@ -290,8 +316,9 @@ onBeforeUnmount(() => {
 
       <div class="brands-featured reveal">
         <article class="brand-card" v-for="brand in featuredBrands" :key="brand.name">
-          <span class="brand-flag">{{ brand.flag }}</span>
-          <span class="brand-logo-text">{{ brand.name }}</span>
+          <span class="brand-logo-shell">
+            <img :src="brand.logo" :alt="`${brand.name} logo`" class="brand-logo-img" :style="{ '--brand-zoom': brand.zoom || '1' }" loading="lazy" />
+          </span>
           <div class="brand-origin">{{ brand.origin }}</div>
         </article>
       </div>
@@ -312,7 +339,15 @@ onBeforeUnmount(() => {
             <div>
               <div class="store-name">{{ store.name }}</div>
               <div class="store-addr">{{ store.addr }}</div>
-              <div class="store-hours">{{ store.hours }}</div>
+              <div class="store-hours">
+                <div v-for="line in store.schedule" :key="line">{{ line }}</div>
+              </div>
+              <div v-if="store.notes?.length" class="store-notes">
+                <div v-for="note in store.notes" :key="note">{{ note }}</div>
+              </div>
+              <div class="store-phones">
+                <a v-for="phone in store.phones" :key="phone.label" :href="phone.href">{{ phone.label }}</a>
+              </div>
             </div>
           </article>
         </div>
@@ -397,8 +432,8 @@ onBeforeUnmount(() => {
         Напишите нам и мы перезвоним. Поможем подобрать шины и диски, оформим заказ или запишем на сервис.
       </p>
       <div class="cta-btns reveal">
-        <a href="tel:+79284449500" class="btn-primary">+7 (928) 444-95-00</a>
-        <a href="tel:+78612922923" class="btn-secondary">+7 (861) 292-29-23</a>
+        <a :href="mainPhoneHref" class="btn-primary">{{ mainPhone }}</a>
+        <a href="tel:+79284449500" class="btn-secondary">+7 (928) 444-95-00</a>
       </div>
     </section>
 
@@ -413,11 +448,10 @@ onBeforeUnmount(() => {
         <a href="#brands">Бренды</a>
         <a href="#map">Магазины</a>
         <a href="#about">О нас</a>
-        <a href="mailto:info@avtoreal.example">info@avtoreal.example</a>
       </div>
 
       <div class="footer-copy">
-        <div>+7 (928) 444-95-00 · +7 (861) 292-29-23</div>
+        <div>{{ mainPhone }} · +7 (928) 444-95-00</div>
         <div>© {{ currentYear }} ООО Автореал · Краснодар</div>
       </div>
     </footer>
@@ -535,11 +569,11 @@ nav ul a:hover {
 
 .hero-wheel {
   position: absolute;
-  right: -70px;
+  right: -6vw;
   top: 50%;
   transform: translateY(-50%);
-  width: 840px;
-  height: 840px;
+  width: min(50vw, 760px);
+  height: min(50vw, 760px);
   animation: spin-slow 30s linear infinite;
 }
 
@@ -560,6 +594,8 @@ nav ul a:hover {
 .hero-content {
   position: relative;
   z-index: 2;
+  max-width: min(52vw, 760px);
+  margin-top: -90px;
 }
 
 .hero-tag {
@@ -578,7 +614,7 @@ nav ul a:hover {
 
 .hero-title {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(72px, 9vw, 128px);
+  font-size: clamp(68px, 7.2vw, 112px);
   line-height: 0.9;
   margin: 0;
   opacity: 0;
@@ -844,26 +880,37 @@ section {
   background: rgba(255, 77, 0, 0.04);
 }
 
-.brand-logo-text {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 28px;
-  letter-spacing: 0.12em;
-  color: rgba(255, 255, 255, 0.6);
-  display: block;
-  margin-bottom: 8px;
-}
-
 .brand-origin {
   font-size: 11px;
   color: var(--muted);
   letter-spacing: 0.1em;
   text-transform: uppercase;
+  margin-top: 4px;
 }
 
-.brand-flag {
-  font-size: 20px;
+.brand-logo-img {
   display: block;
+  width: 100%;
+  max-width: 182px;
+  height: 48px;
+  object-fit: contain;
+  object-position: center;
+  margin: 0 auto;
+  transform: scale(var(--brand-zoom, 1));
+}
+
+.brand-logo-shell {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 210px;
+  height: 64px;
+  padding: 6px 10px;
   margin-bottom: 10px;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  overflow: hidden;
 }
 
 .map-layout {
@@ -908,6 +955,32 @@ section {
 .store-hours {
   font-size: 12px;
   color: var(--orange);
+}
+
+.store-notes {
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--white);
+  line-height: 1.5;
+}
+
+.store-phones {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+}
+
+.store-phones a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.store-phones a:hover {
+  color: var(--orange);
+  border-bottom-color: var(--orange);
 }
 
 .map-yandex {
@@ -1298,6 +1371,7 @@ footer {
   #hero {
     grid-template-columns: 1fr;
     padding: 100px 24px 150px;
+    overflow: visible;
   }
 
   .hero-lines {
@@ -1310,6 +1384,11 @@ footer {
     bottom: 32px;
     gap: 26px;
     flex-wrap: wrap;
+  }
+
+  .hero-content {
+    max-width: 100%;
+    margin-top: 0;
   }
 
   section {
@@ -1378,9 +1457,10 @@ footer {
   }
 
   .hero-title {
-    font-size: clamp(56px, 17vw, 82px);
-    line-height: 0.95;
-    letter-spacing: 0.01em;
+    font-size: clamp(44px, 13.2vw, 62px);
+    line-height: 1;
+    letter-spacing: 0;
+    max-width: 100%;
   }
 
   .hero-cta {
