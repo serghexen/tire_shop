@@ -361,11 +361,10 @@ onBeforeUnmount(() => {
         </div>
 
         <div class="map-yandex reveal">
-          <iframe
-            src="https://yandex.ru/map-widget/v1/?um=constructor%3A9f7309c9d12b800d64a1c8f11465f9ab18722d72e2f30aba63ed0c1488759686&amp;source=constructor"
+          <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A9f7309c9d12b800d64a1c8f11465f9ab18722d72e2f30aba63ed0c1488759686&amp;source=constructor" 
             allowfullscreen
-            loading="lazy"
-          ></iframe>
+            loading="lazy">
+          </iframe>
         </div>
       </div>
     </section>
