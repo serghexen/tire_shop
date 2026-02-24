@@ -32,12 +32,15 @@ const services = [
   },
   {
     image: '/service-icons/cosmetics.jpg',
-    name: 'Автокосметика',
-    desc: 'Японская автокосметика премиум-класса Eikosha. Автомасла на розлив, спецжидкости, автохимия.'
+    name: 'Запчасти и расходные\nматериалы',
+    desc: 'Являемся производителем масла REALMAX. В наличии расходные материалы для прохождение ТО. Большой выбор запчастей.'
   }
 ];
 
 const allBrands = [
+  'Lassa',
+  'Otani',
+  'Infinity',
   'Michelin',
   'Pirelli',
   'Continental',
@@ -55,17 +58,17 @@ const allBrands = [
 ];
 
 const featuredBrands = [
-  { name: 'MICHELIN', origin: 'Франция', logo: '/brand-logos/michelin-18.svg', zoom: '1.35' },
-  { name: 'PIRELLI', origin: 'Италия', logo: '/brand-logos/pirelli.svg', zoom: '1.08' },
-  { name: 'CONTINENTAL', origin: 'Германия', logo: '/brand-logos/continental-official.svg', zoom: '1.02' },
-  { name: 'BRIDGESTONE', origin: 'Япония', logo: '/brand-logos/bridgestone.svg', zoom: '1.08' },
-  { name: 'NOKIAN', origin: 'Финляндия', logo: '/brand-logos/nokian.svg', zoom: '1.08' },
   { name: 'LASSA', origin: 'Турция', logo: '/brand-logos/lassa-red.jpg', zoom: '2.56' },
+  { name: 'OTANI', origin: 'Таиланд', logo: '/brand-logos/otani.png', zoom: '1.08' },
+  { name: 'PIRELLI', origin: 'Италия', logo: '/brand-logos/pirelli.svg', zoom: '1.08' },
+  { name: 'BRIDGESTONE', origin: 'Япония', logo: '/brand-logos/bridgestone.svg', zoom: '1.08' },
   { name: 'YOKOHAMA', origin: 'Япония', logo: '/brand-logos/yokohama.svg', zoom: '1.08' },
-  { name: 'HANKOOK', origin: 'Корея', logo: '/brand-logos/hankook.svg', zoom: '1.08' }
+  { name: 'INFINITY', origin: 'ОАЭ', logo: '/brand-logos/infinity.png', zoom: '1.08' },
+  { name: 'IKON TYRES', origin: 'Россия', logo: '/brand-logos/ikon-tyres.jpg', zoom: '2.0' },
+  { name: 'KUMHO', origin: 'Корея', logo: '/brand-logos/kumho-official.svg', zoom: '1.20' }
 ];
 
-const mainPhone = '+7 (800) 777-0-735';
+const mainPhone = '8 (800) 777-0-735';
 const mainPhoneHref = 'tel:+78007770735';
 
 const stores = [
@@ -74,7 +77,7 @@ const stores = [
     addr: 'Краснодар, ул. Демуса 9/9',
     schedule: ['ПН-ПТ 9:00 до 18:00', 'СБ 9:00 до 15:00', 'ВС Выходной'],
     phones: [
-      { label: '8-928-444-75-00', href: 'tel:+79284447500' },
+      { label: '8-928-038-01-31', href: 'tel:+79280380131' },
       { label: '8-861-212-67-91', href: 'tel:+78612126791' },
       { label: '8-861-212-67-92', href: 'tel:+78612126792' }
     ],
@@ -87,7 +90,7 @@ const stores = [
     schedule: ['ПН-ВС 9:00 до 19:00'],
     notes: ['Шиномонтаж, Сезонное хранение', 'Магазин Шины&Диски'],
     phones: [
-      { label: '8-928-444-95-00', href: 'tel:+79284449500' },
+      { label: '8-928-038-01-31', href: 'tel:+79280380131' },
       { label: '8-929-837-05-87', href: 'tel:+79298370587' }
     ],
     lat: 45.08415,
@@ -244,18 +247,18 @@ onBeforeUnmount(() => {
         <li><a href="#reviews" @click="closeMenu">Отзывы</a></li>
       </ul>
 
-      <a :href="mainPhoneHref" class="btn-primary nav-phone">{{ mainPhone }}</a>
+      <div class="nav-actions">
+        <a :href="mainPhoneHref" class="btn-primary nav-phone">{{ mainPhone }}</a>
+      </div>
     </nav>
 
     <section id="hero">
       <div class="hero-bg"></div>
       <div class="hero-lines">
-        <div class="hero-wheel">
-          <img :src="wheelSrc" alt="" class="hero-wheel-img" />
-          <div class="hero-wheel-cap" aria-hidden="true">
-            <img src="/logo.png" alt="" class="hero-wheel-cap-logo" />
-          </div>
-        </div>
+        <a class="hero-qr-hero" href="https://t.me/AVTOREAL_735_BOT" target="_blank" rel="noopener noreferrer">
+          <img src="/hero/telegram-card-cropped.png" alt="QR для Telegram @AVTOREAL_735_BOT" class="hero-qr-hero-img" loading="lazy" />
+          <span class="hero-qr-hero-caption">Подбор шин и дисков 24/7</span>
+        </a>
       </div>
 
       <div class="hero-content">
@@ -269,12 +272,12 @@ onBeforeUnmount(() => {
 
       <div class="hero-stats">
         <div class="stat-item">
-          <div class="stat-num">10<span>+</span></div>
+          <div class="stat-num">15<span>+</span></div>
           <div class="stat-label">Лет на рынке</div>
         </div>
         <div class="stat-item">
           <div class="stat-num">3</div>
-          <div class="stat-label">Точки в Краснодаре</div>
+          <div class="stat-label">Магазина в Краснодаре</div>
         </div>
         <div class="stat-item">
           <div class="stat-num">100<span>+</span></div>
@@ -383,7 +386,7 @@ onBeforeUnmount(() => {
             </div>
           </div>
           <div class="about-accent-box">
-            <div class="about-accent-num">10</div>
+            <div class="about-accent-num">15</div>
             <div class="about-accent-label">лет на рынке</div>
           </div>
         </div>
@@ -432,7 +435,7 @@ onBeforeUnmount(() => {
       <h2 class="cta-title reveal"><span>Подберём комплект</span><br /><span class="cta-title-accent">под ваш авто</span></h2>
       <div class="cta-btns reveal">
         <a :href="mainPhoneHref" class="btn-primary">{{ mainPhone }}</a>
-        <a href="tel:+79284449500" class="btn-secondary">+7 (928) 444-95-00</a>
+        <a href="tel:+79280380131" class="btn-secondary">+7 (928) 038-01-31</a>
       </div>
     </section>
 
@@ -450,7 +453,7 @@ onBeforeUnmount(() => {
       </div>
 
       <div class="footer-copy">
-        <div>{{ mainPhone }} · +7 (928) 444-95-00</div>
+        <div>{{ mainPhone }} · +7 (928) 038-01-31</div>
         <div>© {{ currentYear }} ООО Автореал · Краснодар</div>
       </div>
     </footer>
@@ -551,6 +554,18 @@ nav ul a:hover {
   white-space: nowrap;
 }
 
+.nav-actions {
+  display: inline-flex;
+  align-items: center;
+  width: 236px;
+}
+
+.nav-phone {
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+}
+
 #hero {
   min-height: 100vh;
   display: grid;
@@ -564,7 +579,9 @@ nav ul a:hover {
 .hero-bg {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 60% 80% at 80% 50%, #1a0a00 0%, transparent 70%);
+  background:
+    linear-gradient(90deg, rgba(5, 7, 12, 0.96) 0%, rgba(5, 7, 12, 0.82) 40%, rgba(5, 7, 12, 0.72) 100%),
+    url('/hero/hero-bg-wheel.jpg') center right / cover no-repeat;
 }
 
 .hero-lines {
@@ -575,54 +592,33 @@ nav ul a:hover {
   width: 50%;
 }
 
-.hero-wheel {
+.hero-qr-hero {
   position: absolute;
-  right: -6vw;
-  top: 50%;
-  transform: translateY(-50%);
-  width: min(50vw, 760px);
-  height: min(50vw, 760px);
-  animation: spin-slow 30s linear infinite;
+  right: 60px;
+  top: 540px;
+  transform: none;
+  width: 236px;
+  padding: 0;
+  text-decoration: none;
+  box-sizing: border-box;
 }
 
-.hero-wheel-img {
+.hero-qr-hero-img {
   width: 100%;
-  height: 100%;
-  object-fit: contain;
   display: block;
-  filter: contrast(1.06) brightness(1.03);
-}
-
-.hero-wheel-cap {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 17.5%;
-  aspect-ratio: 1 / 1;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 32% 30%, rgba(255, 255, 255, 0.22), rgba(18, 18, 18, 0.94) 64%),
-    #0d0d0d;
-  border: 2px solid rgba(255, 255, 255, 0.58);
-  box-shadow:
-    inset 0 0 10px rgba(0, 0, 0, 0.55),
-    0 6px 16px rgba(0, 0, 0, 0.4);
-  display: grid;
-  place-items: center;
-}
-
-.hero-wheel-cap-logo {
-  width: 68%;
-  height: 68%;
+  border-radius: 0;
+  background: transparent;
   object-fit: contain;
-  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.35));
 }
 
-@keyframes spin-slow {
-  to {
-    transform: translateY(-50%) rotate(360deg);
-  }
+.hero-qr-hero-caption {
+  display: block;
+  margin-top: -50px;
+  text-align: center;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--white);
 }
 
 .hero-content {
@@ -682,10 +678,11 @@ nav ul a:hover {
 
 .hero-stats {
   position: absolute;
-  bottom: 190px;
+  bottom: 150px;
   left: 60px;
   right: 60px;
   display: flex;
+  align-items: flex-end;
   gap: 60px;
   opacity: 0;
   animation: fade-up 0.8s 1s forwards;
@@ -841,6 +838,7 @@ section {
   margin-bottom: 16px;
   position: relative;
   z-index: 2;
+  white-space: pre-line;
 }
 
 .service-desc {
