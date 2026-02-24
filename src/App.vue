@@ -2,7 +2,6 @@
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 
 const menuOpen = ref(false);
-const wheelSrc = ref('/wheel.jpg');
 
 const services = [
   {
@@ -127,7 +126,7 @@ const stores = [
 ];
 
 const perks = [
-  '10 лет на рынке Краснодарского края',
+  '15 лет на рынке Краснодарского края',
   'Сотрудничество с ведущими мировыми производителями',
   'Шины и диски в кредит или рассрочку',
   'Легковой шиномонтаж и шиномонтаж внедорожников',
@@ -175,37 +174,6 @@ const closeMenu = () => {
 };
 
 onMounted(() => {
-  const img = new Image();
-  img.src = '/wheel.jpg';
-  img.onload = () => {
-    const canvas = document.createElement('canvas');
-    canvas.width = img.naturalWidth;
-    canvas.height = img.naturalHeight;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    ctx.drawImage(img, 0, 0);
-    const frame = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    const px = frame.data;
-
-    // Chroma-key for dark background: keep metallic wheel, remove near-black pixels.
-    for (let i = 0; i < px.length; i += 4) {
-      const r = px[i];
-      const g = px[i + 1];
-      const b = px[i + 2];
-      const m = Math.max(r, g, b);
-
-      if (m < 18) {
-        px[i + 3] = 0;
-      } else if (m < 42) {
-        px[i + 3] = Math.round(((m - 18) / 24) * 255);
-      }
-    }
-
-    ctx.putImageData(frame, 0, 0);
-    wheelSrc.value = canvas.toDataURL('image/png');
-  };
-
   observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -1468,7 +1436,7 @@ footer {
 
   #hero {
     grid-template-columns: 1fr;
-    padding: 100px 24px 150px;
+    padding: 100px 24px 84px;
     overflow: visible;
   }
 
@@ -1477,11 +1445,14 @@ footer {
   }
 
   .hero-stats {
-    left: 24px;
-    right: 24px;
-    bottom: 84px;
+    position: relative;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    margin-top: 26px;
     gap: 26px;
     flex-wrap: wrap;
+    align-items: flex-start;
   }
 
   .hero-content {
@@ -1562,6 +1533,14 @@ footer {
     display: none;
   }
 
+  #hero {
+    padding-top: 122px;
+  }
+
+  .hero-content {
+    margin-top: 0;
+  }
+
   .services-grid,
   .brands-featured,
   .reviews-grid {
@@ -1591,6 +1570,12 @@ footer {
     max-width: 100%;
   }
 
+  .hero-tag {
+    margin-top: 6px;
+    transform: none;
+    margin-bottom: 52px;
+  }
+
   .hero-cta {
     margin-top: 32px;
     flex-wrap: wrap;
@@ -1612,6 +1597,12 @@ footer {
 
   #cta {
     padding: 70px 24px;
+  }
+
+  .cta-title {
+    font-size: clamp(34px, 10.2vw, 46px);
+    line-height: 0.95;
+    letter-spacing: 0.03em;
   }
 
   .logo,
