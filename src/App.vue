@@ -168,9 +168,18 @@ const reviews = [
 
 const currentYear = new Date().getFullYear();
 let observer;
+const metrikaId = Number(import.meta.env.VITE_YANDEX_METRIKA_ID || 0);
 
 const closeMenu = () => {
   menuOpen.value = false;
+};
+
+const trackTelegramCatalogClick = () => {
+  if (typeof window === 'undefined' || !metrikaId || typeof window.ym !== 'function') {
+    return;
+  }
+
+  window.ym(metrikaId, 'reachGoal', 'telegram_catalog_click');
 };
 
 onMounted(() => {
@@ -223,7 +232,13 @@ onBeforeUnmount(() => {
     <section id="hero">
       <div class="hero-bg"></div>
       <div class="hero-lines">
-        <a class="hero-qr-hero" href="https://t.me/AVTOREAL_735_BOT" target="_blank" rel="noopener noreferrer">
+        <a
+          class="hero-qr-hero"
+          href="https://t.me/AVTOREAL_735_BOT"
+          target="_blank"
+          rel="noopener noreferrer"
+          @click="trackTelegramCatalogClick"
+        >
           <img src="/hero/telegram-card-cropped.png" alt="QR для Telegram @AVTOREAL_735_BOT" class="hero-qr-hero-img" loading="lazy" />
           <span class="hero-qr-hero-caption">Подбор шин и дисков 24/7</span>
         </a>
@@ -241,6 +256,7 @@ onBeforeUnmount(() => {
           href="https://t.me/AVTOREAL_735_BOT"
           target="_blank"
           rel="noopener noreferrer"
+          @click="trackTelegramCatalogClick"
         >
           <svg class="hero-telegram-mobile-icon" viewBox="0 0 24 24" aria-hidden="true">
             <path

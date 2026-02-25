@@ -11,6 +11,20 @@ npm run dev
 
 Открыть: `http://localhost:5173`
 
+## Яндекс Метрика
+
+В `src/main.js` добавена инициализация Метрики через переменную окружения:
+
+```bash
+VITE_YANDEX_METRIKA_ID=12345678
+```
+
+Для локальной разработки можно создать файл `.env.local` в корне проекта:
+
+```bash
+echo "VITE_YANDEX_METRIKA_ID=12345678" > .env.local
+```
+
 ## Production build
 
 ```bash
