@@ -231,6 +231,10 @@ onBeforeUnmount(() => {
 
       <div class="hero-content">
         <div class="hero-tag">Автореал — Диски &amp; Шины · Краснодар</div>
+        <a class="hero-qr-mobile" href="https://t.me/AVTOREAL_735_BOT" target="_blank" rel="noopener noreferrer">
+          <img src="/hero/telegram-card-cropped.png" alt="QR для Telegram @AVTOREAL_735_BOT" class="hero-qr-hero-img" loading="lazy" />
+          <span class="hero-qr-hero-caption">Подбор шин и дисков 24/7</span>
+        </a>
         <h1 class="hero-title">Твой<br /><span class="accent">Правильный</span>Выбор</h1>
         <p class="hero-sub">
           Крупнейший в Краснодарском крае магазин шин и дисков. Шиномонтаж, балансировка,
@@ -593,6 +597,13 @@ nav ul a:hover {
   z-index: 2;
   max-width: min(52vw, 760px);
   margin-top: -190px;
+}
+
+.hero-qr-mobile {
+  display: none;
+  width: 236px;
+  margin-top: 18px;
+  text-decoration: none;
 }
 
 .hero-tag {
@@ -1444,6 +1455,10 @@ footer {
     display: none;
   }
 
+  .hero-qr-mobile {
+    display: none;
+  }
+
   .hero-stats {
     position: relative;
     left: auto;
@@ -1541,6 +1556,22 @@ footer {
     margin-top: 0;
   }
 
+  .hero-qr-mobile {
+    display: block;
+    width: min(46vw, 176px);
+    margin-top: -75px;
+    margin-bottom: -25px;
+    margin-left: auto;
+    margin-right: -15px;
+    text-align: center;
+  }
+
+  .hero-qr-mobile .hero-qr-hero-caption {
+    margin-top: -35px;
+    font-size: 10px;
+    letter-spacing: 0.05em;
+  }
+
   .services-grid,
   .brands-featured,
   .reviews-grid {
@@ -1571,9 +1602,7 @@ footer {
   }
 
   .hero-tag {
-    margin-top: 6px;
-    transform: none;
-    margin-bottom: 52px;
+    display: none;
   }
 
   .hero-cta {
