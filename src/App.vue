@@ -231,15 +231,25 @@ onBeforeUnmount(() => {
 
       <div class="hero-content">
         <div class="hero-tag">Автореал — Диски &amp; Шины · Краснодар</div>
-        <a class="hero-qr-mobile" href="https://t.me/AVTOREAL_735_BOT" target="_blank" rel="noopener noreferrer">
-          <img src="/hero/telegram-card-cropped.png" alt="QR для Telegram @AVTOREAL_735_BOT" class="hero-qr-hero-img" loading="lazy" />
-          <span class="hero-qr-hero-caption">Подбор шин и дисков 24/7</span>
-        </a>
         <h1 class="hero-title">Твой<br /><span class="accent">Правильный</span>Выбор</h1>
         <p class="hero-sub">
           Крупнейший в Краснодарском крае магазин шин и дисков. Шиномонтаж, балансировка,
           сезонное хранение и диагностика.
         </p>
+        <a
+          class="hero-telegram-mobile-btn"
+          href="https://t.me/AVTOREAL_735_BOT"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg class="hero-telegram-mobile-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              fill="currentColor"
+              d="M20.62 3.18a1.08 1.08 0 0 0-1.1-.14L3.2 9.29a1.1 1.1 0 0 0 .08 2.05l3.63 1.2 1.4 4.41a1.1 1.1 0 0 0 1.95.32l2.18-2.77 3.83 2.87a1.1 1.1 0 0 0 1.74-.63l2.92-12.5a1.08 1.08 0 0 0-.3-1.06ZM9.82 14.6l-.6-1.9 7.2-5.57-6.6 6.58Zm6.2.29-2.9-2.18a1.1 1.1 0 0 0-1.5.2l-1.32 1.67.58-1.76 5.78-5.77-1.64 7.84Z"
+            />
+          </svg>
+          Подбор шин и дисков 24/7
+        </a>
       </div>
 
       <div class="hero-stats">
@@ -599,13 +609,6 @@ nav ul a:hover {
   margin-top: -190px;
 }
 
-.hero-qr-mobile {
-  display: none;
-  width: 236px;
-  margin-top: 18px;
-  text-decoration: none;
-}
-
 .hero-tag {
   display: inline-block;
   font-size: 11px;
@@ -643,6 +646,10 @@ nav ul a:hover {
   line-height: 1.7;
   opacity: 0;
   animation: fade-up 0.8s 0.6s forwards;
+}
+
+.hero-telegram-mobile-btn {
+  display: none;
 }
 
 .hero-cta {
@@ -1455,10 +1462,6 @@ footer {
     display: none;
   }
 
-  .hero-qr-mobile {
-    display: none;
-  }
-
   .hero-stats {
     position: relative;
     left: auto;
@@ -1554,22 +1557,9 @@ footer {
 
   .hero-content {
     margin-top: 0;
-  }
-
-  .hero-qr-mobile {
-    display: block;
-    width: min(46vw, 176px);
-    margin-top: -75px;
-    margin-bottom: -25px;
-    margin-left: auto;
-    margin-right: -15px;
-    text-align: center;
-  }
-
-  .hero-qr-mobile .hero-qr-hero-caption {
-    margin-top: -35px;
-    font-size: 10px;
-    letter-spacing: 0.05em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .services-grid,
@@ -1595,6 +1585,7 @@ footer {
   }
 
   .hero-title {
+    order: 2;
     font-size: clamp(44px, 13.2vw, 62px);
     line-height: 1;
     letter-spacing: 0;
@@ -1602,7 +1593,42 @@ footer {
   }
 
   .hero-tag {
+    margin-top: 6px;
+    transform: none;
+    margin-bottom: 52px;
     display: none;
+  }
+
+  .hero-telegram-mobile-btn {
+    display: inline-flex;
+    order: 1;
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: -30px;
+    margin-bottom: 50px;
+    padding: 15px 25px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 98, 0, 0.75);
+    background: linear-gradient(180deg, #ff6d1a 0%, #ff4d00 100%);
+    color: #0c0d10;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.10em;
+    font-size: 11px;
+    font-weight: 800;
+    box-shadow: 0 10px 24px rgba(255, 77, 0, 0.28);
+  }
+
+  .hero-telegram-mobile-icon {
+    width: 16px;
+    height: 16px;
+    flex: 0 0 16px;
+  }
+
+  .hero-sub {
+    order: 3;
   }
 
   .hero-cta {
