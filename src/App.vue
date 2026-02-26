@@ -20,9 +20,9 @@ const services = [
     desc: 'Профессиональный монтаж легковых автомобилей и внедорожников. Ремонт порезов, прокатка дисков, ошиповка шин.'
   },
   {
-    image: '/service-icons/balance.png',
-    name: 'Балансировка',
-    desc: 'Компьютерная балансировка колёс. Устраняем вибрацию и продлеваем срок службы ходовой части.'
+    image: '/service-icons/deliver.png',
+    name: 'Доставка',
+    desc: 'Доставка по России и Краснодарскому краю'
   },
   {
     image: '/service-icons/storage.jpg',
@@ -168,7 +168,10 @@ const reviews = [
 
 const currentYear = new Date().getFullYear();
 let observer;
+let telegramObserver;
 const metrikaId = Number(import.meta.env.VITE_YANDEX_METRIKA_ID || 0);
+const heroTelegramButton = ref(null);
+const showTelegramFab = ref(true);
 
 const closeMenu = () => {
   menuOpen.value = false;
@@ -195,11 +198,26 @@ onMounted(() => {
   );
 
   document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+  telegramObserver = new IntersectionObserver(
+    ([entry]) => {
+      showTelegramFab.value = !entry.isIntersecting;
+    },
+    { threshold: 0.2 }
+  );
+
+  if (heroTelegramButton.value) {
+    telegramObserver.observe(heroTelegramButton.value);
+  }
 });
 
 onBeforeUnmount(() => {
   if (observer) {
     observer.disconnect();
+  }
+
+  if (telegramObserver) {
+    telegramObserver.disconnect();
   }
 });
 </script>
@@ -209,7 +227,10 @@ onBeforeUnmount(() => {
     <nav>
       <a href="#hero" class="logo" @click="closeMenu">
         <img src="/logo.png" alt="Автореал" />
-        <span class="logo-brand"><span class="logo-outlined">АВТО</span><span class="logo-solid">РЕАЛ</span></span>
+        <span class="logo-text">
+          <span class="logo-brand"><span class="logo-outlined">АВТО</span><span class="logo-solid">РЕАЛ</span></span>
+          <span class="logo-subtitle">Официальные представители шин Lassa и Otani в России.</span>
+        </span>
       </a>
 
       <button class="menu-btn" @click="menuOpen = !menuOpen" aria-label="Открыть меню">
@@ -253,6 +274,7 @@ onBeforeUnmount(() => {
         </p>
         <a
           class="hero-telegram-mobile-btn"
+          ref="heroTelegramButton"
           href="https://t.me/AVTOREAL_735_BOT"
           target="_blank"
           rel="noopener noreferrer"
@@ -274,14 +296,17 @@ onBeforeUnmount(() => {
           <div class="stat-label">Лет на рынке</div>
         </div>
         <div class="stat-item">
-          <div class="stat-num">3</div>
-          <div class="stat-label">Магазина в Краснодаре</div>
+          <div class="stat-num">1000<span>+</span></div>
+          <div class="stat-label">Партнеров по всей России</div>
         </div>
         <div class="stat-item">
           <div class="stat-num">100<span>+</span></div>
           <div class="stat-label">Брендов в наличии</div>
         </div>
       </div>
+      <p class="hero-stats-note">
+        Нам доверяют более 1000 партнеров по всей стране. Выбирайте качество там, где удобно вам!
+      </p>
     </section>
 
     <section id="services">
@@ -439,7 +464,10 @@ onBeforeUnmount(() => {
     <footer>
       <a href="#hero" class="footer-logo" @click="closeMenu">
         <img src="/logo.png" alt="Автореал" />
-        <span class="logo-brand"><span class="logo-outlined">АВТО</span><span class="logo-solid">РЕАЛ</span></span>
+        <span class="logo-text">
+          <span class="logo-brand"><span class="logo-outlined">АВТО</span><span class="logo-solid">РЕАЛ</span></span>
+          <span class="logo-subtitle">Официальные представители шин Lassa и Otani в России.</span>
+        </span>
       </a>
 
       <div class="footer-links">
@@ -454,6 +482,23 @@ onBeforeUnmount(() => {
         <div>© {{ currentYear }} ООО Автореал · Краснодар</div>
       </div>
     </footer>
+
+    <a
+      class="telegram-fab-mobile"
+      :class="{ 'is-visible': showTelegramFab }"
+      href="https://t.me/AVTOREAL_735_BOT"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Открыть каталог в Telegram"
+      @click="trackTelegramCatalogClick"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path
+          fill="currentColor"
+          d="M20.62 3.18a1.08 1.08 0 0 0-1.1-.14L3.2 9.29a1.1 1.1 0 0 0 .08 2.05l3.63 1.2 1.4 4.41a1.1 1.1 0 0 0 1.95.32l2.18-2.77 3.83 2.87a1.1 1.1 0 0 0 1.74-.63l2.92-12.5a1.08 1.08 0 0 0-.3-1.06ZM9.82 14.6l-.6-1.9 7.2-5.57-6.6 6.58Zm6.2.29-2.9-2.18a1.1 1.1 0 0 0-1.5.2l-1.32 1.67.58-1.76 5.78-5.77-1.64 7.84Z"
+        />
+      </svg>
+    </a>
   </div>
 </template>
 
@@ -502,6 +547,20 @@ nav {
   display: inline-flex;
   align-items: baseline;
   white-space: nowrap;
+}
+
+.logo-text {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.logo-subtitle {
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: rgba(240, 242, 246, 0.72);
+  max-width: 420px;
+  line-height: 1.2;
 }
 
 .logo-outlined {
@@ -590,14 +649,15 @@ nav ul a:hover {
 }
 
 .hero-qr-hero {
-  position: absolute;
+  position: fixed;
   right: 60px;
-  top: 540px;
+  bottom: 125px;
   transform: none;
   width: 236px;
   padding: 0;
   text-decoration: none;
   box-sizing: border-box;
+  z-index: 95;
 }
 
 .hero-qr-hero-img {
@@ -668,6 +728,10 @@ nav ul a:hover {
   display: none;
 }
 
+.telegram-fab-mobile {
+  display: none;
+}
+
 .hero-cta {
   margin-top: 48px;
   display: flex;
@@ -681,12 +745,39 @@ nav ul a:hover {
   position: absolute;
   bottom: 150px;
   left: 60px;
-  right: 60px;
+  right: 340px;
   display: flex;
   align-items: flex-end;
   gap: 60px;
   opacity: 0;
   animation: fade-up 0.8s 1s forwards;
+}
+
+.hero-stats-note {
+  position: absolute;
+  left: 60px;
+  right: auto;
+  bottom: 58px;
+  margin: 0;
+  padding: 10px 14px;
+  color: #e8edf7;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  background: linear-gradient(90deg, rgba(12, 16, 24, 0.76), rgba(12, 16, 24, 0.34));
+  border-left: 3px solid var(--orange);
+  border-radius: 8px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+  max-width: calc(100vw - 460px);
+  white-space: normal;
+}
+
+@media (min-width: 1700px) {
+  .hero-stats-note {
+    max-width: none;
+    white-space: nowrap;
+  }
 }
 
 .stat-num {
@@ -1489,9 +1580,27 @@ footer {
     align-items: flex-start;
   }
 
+  .hero-stats-note {
+    position: relative;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    margin-top: 14px;
+    font-size: 13px;
+    max-width: 100%;
+    width: fit-content;
+    white-space: normal;
+  }
+
   .hero-content {
     max-width: 100%;
-    margin-top: -70px;
+    margin-top: 0;
+  }
+
+  .hero-tag {
+    margin-top: 0;
+    transform: none;
+    margin-bottom: 56px;
   }
 
   section {
@@ -1536,6 +1645,80 @@ footer {
   }
 }
 
+@media (min-width: 1101px) and (max-height: 900px) {
+  #hero {
+    min-height: auto;
+    padding-top: 112px;
+    padding-bottom: 56px;
+  }
+
+  .hero-content {
+    margin-top: 0;
+  }
+
+  .hero-tag {
+    margin-top: 0;
+    transform: none;
+    margin-bottom: 56px;
+  }
+
+  .hero-stats {
+    position: relative;
+    grid-column: 1 / 2;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    margin-top: 24px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 34px;
+  }
+
+  .hero-stats-note {
+    position: relative;
+    grid-column: 1 / 2;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    margin-top: 18px;
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 1101px) and (max-width: 1500px) {
+  .hero-content {
+    margin-top: 0;
+  }
+
+  .hero-tag {
+    margin-top: 0;
+    transform: none;
+    margin-bottom: 56px;
+  }
+
+  .hero-stats {
+    position: relative;
+    grid-column: 1 / 2;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    margin-top: 24px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 34px;
+  }
+
+  .hero-stats-note {
+    position: relative;
+    grid-column: 1 / 2;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    margin-top: 18px;
+    font-size: 15px;
+  }
+}
+
 @media (max-width: 760px) {
   .menu-btn {
     display: block;
@@ -1547,6 +1730,16 @@ footer {
   nav {
     flex-wrap: wrap;
     padding: 16px 14px;
+  }
+
+  nav .logo {
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: calc(100% - 84px);
+  }
+
+  nav .logo-text {
+    min-width: 0;
   }
 
   nav ul {
@@ -1615,6 +1808,16 @@ footer {
     display: none;
   }
 
+  .hero-stats-note {
+    margin-top: 14px;
+    font-size: 13px;
+    line-height: 1.45;
+    padding: 8px 10px;
+    border-left-width: 2px;
+    width: auto;
+    max-width: 100%;
+  }
+
   .hero-telegram-mobile-btn {
     display: inline-flex;
     order: 1;
@@ -1647,6 +1850,38 @@ footer {
     order: 3;
   }
 
+  .telegram-fab-mobile {
+    position: fixed;
+    right: 16px;
+    bottom: calc(16px + env(safe-area-inset-bottom));
+    z-index: 110;
+    width: 56px;
+    height: 56px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: #0d121a;
+    background: linear-gradient(180deg, #ff7d2a 0%, #ff4d00 100%);
+    box-shadow: 0 12px 26px rgba(255, 77, 0, 0.42), 0 0 0 2px rgba(255, 255, 255, 0.18);
+    text-decoration: none;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(10px) scale(0.92);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .telegram-fab-mobile.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+  }
+
+  .telegram-fab-mobile svg {
+    width: 24px;
+    height: 24px;
+  }
+
   .hero-cta {
     margin-top: 32px;
     flex-wrap: wrap;
@@ -1676,9 +1911,15 @@ footer {
     letter-spacing: 0.03em;
   }
 
-  .logo,
-  .footer-logo {
+  .logo {
     line-height: 0;
+  }
+
+  .footer-logo {
+    line-height: 1.2;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
   }
 
   .logo img {
@@ -1690,8 +1931,28 @@ footer {
   }
 
   .logo-brand {
-    font-size: 24px;
+    font-size: 20px;
     letter-spacing: 0.02em;
+  }
+
+  .logo-subtitle {
+    font-size: 7px;
+    letter-spacing: 0.04em;
+    line-height: 1.25;
+    max-width: 170px;
+  }
+
+  .footer-logo .logo-text {
+    align-items: flex-start;
+  }
+
+  .footer-logo .logo-subtitle {
+    text-align: left;
+    max-width: 180px;
+  }
+
+  .footer-links {
+    justify-content: center;
   }
 
   .about-service-visual {
