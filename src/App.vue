@@ -2,6 +2,7 @@
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 
 const menuOpen = ref(false);
+const wheelSrc = ref('/wheel.jpg');
 
 const services = [
   {
@@ -186,6 +187,36 @@ const trackTelegramCatalogClick = () => {
 };
 
 onMounted(() => {
+  const img = new Image();
+  img.src = '/wheel.jpg';
+  img.onload = () => {
+    const canvas = document.createElement('canvas');
+    canvas.width = img.naturalWidth;
+    canvas.height = img.naturalHeight;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    ctx.drawImage(img, 0, 0);
+    const frame = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    const px = frame.data;
+
+    for (let i = 0; i < px.length; i += 4) {
+      const r = px[i];
+      const g = px[i + 1];
+      const b = px[i + 2];
+      const m = Math.max(r, g, b);
+
+      if (m < 20) {
+        px[i + 3] = 0;
+      } else if (m < 52) {
+        px[i + 3] = Math.round(((m - 20) / 32) * 255);
+      }
+    }
+
+    ctx.putImageData(frame, 0, 0);
+    wheelSrc.value = canvas.toDataURL('image/png');
+  };
+
   observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -253,6 +284,9 @@ onBeforeUnmount(() => {
     <section id="hero">
       <div class="hero-bg"></div>
       <div class="hero-lines">
+        <div class="hero-wheel" aria-hidden="true">
+          <img :src="wheelSrc" alt="" class="hero-wheel-img" />
+        </div>
         <a
           class="hero-qr-hero"
           href="https://t.me/AVTOREAL_735_BOT"
@@ -635,9 +669,7 @@ nav ul a:hover {
 .hero-bg {
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(90deg, rgba(5, 7, 12, 0.96) 0%, rgba(5, 7, 12, 0.82) 40%, rgba(5, 7, 12, 0.72) 100%),
-    url('/hero/hero-bg-wheel.jpg') center right / cover no-repeat;
+  background: radial-gradient(ellipse 60% 80% at 80% 50%, #1a0a00 0%, transparent 70%);
 }
 
 .hero-lines {
@@ -646,6 +678,24 @@ nav ul a:hover {
   top: 0;
   bottom: 0;
   width: 50%;
+}
+
+.hero-wheel {
+  position: absolute;
+  right: 4vw;
+  top: 40%;
+  width: min(50vw, 760px);
+  height: min(50vw, 760px);
+  transform: translateY(-50%);
+  animation: spin-slow 30s linear infinite;
+}
+
+.hero-wheel-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  filter: contrast(1.06) brightness(1.03);
 }
 
 .hero-qr-hero {
@@ -676,6 +726,12 @@ nav ul a:hover {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--white);
+}
+
+@keyframes spin-slow {
+  to {
+    transform: translateY(-50%) rotate(360deg);
+  }
 }
 
 .hero-content {
@@ -1563,6 +1619,12 @@ footer {
     grid-template-columns: 1fr;
     padding: 100px 24px 84px;
     overflow: visible;
+  }
+
+  .hero-bg {
+    background:
+      linear-gradient(90deg, rgba(5, 7, 12, 0.96) 0%, rgba(5, 7, 12, 0.82) 40%, rgba(5, 7, 12, 0.72) 100%),
+      url('/hero/hero-bg-wheel.jpg') center right / cover no-repeat;
   }
 
   .hero-lines {
