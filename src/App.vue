@@ -537,6 +537,13 @@ onBeforeUnmount(() => {
 </template>
 
 <style>
+button,
+input,
+select,
+textarea {
+  font-family: 'Russo One', sans-serif;
+}
+
 nav {
   position: fixed;
   top: 0;
@@ -1815,7 +1822,8 @@ footer {
     display: block;
     margin-left: 0;
     padding: 8px 12px;
-    font-size: 10px;
+    font-size: 11px;
+    letter-spacing: 0.03em;
   }
 
   nav {
@@ -1841,6 +1849,11 @@ footer {
     padding: 16px;
     background: rgba(10, 10, 10, 0.96);
     border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  nav ul a {
+    letter-spacing: 0.03em;
+    font-size: 12px;
   }
 
   nav ul.open {
@@ -1925,7 +1938,7 @@ footer {
     color: #0c0d10;
     text-decoration: none;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.04em;
     font-size: 11px;
     font-weight: 800;
     box-shadow: 0 10px 24px rgba(255, 77, 0, 0.28);
@@ -2028,7 +2041,7 @@ footer {
 
   .logo-subtitle {
     font-size: 8px;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.01em;
     line-height: 1.25;
     max-width: 170px;
   }
