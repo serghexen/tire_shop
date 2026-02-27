@@ -537,8 +537,6 @@ onBeforeUnmount(() => {
 </template>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap&subset=cyrillic');
-
 nav {
   position: fixed;
   top: 0;
@@ -590,8 +588,8 @@ nav {
 }
 
 .logo-subtitle {
-  font-size: 10px;
-  letter-spacing: 0.06em;
+  font-size: 11px;
+  letter-spacing: 0.035em;
   color: rgba(240, 242, 246, 0.72);
   max-width: 420px;
   line-height: 1.2;
@@ -613,7 +611,7 @@ nav {
   background: transparent;
   padding: 10px 14px;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.05em;
   font-size: 11px;
 }
 
@@ -630,7 +628,7 @@ nav ul a {
   text-decoration: none;
   font-size: 13px;
   font-weight: 500;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   transition: color 0.2s;
 }
@@ -690,6 +688,37 @@ nav ul a:hover {
   animation: spin-slow 30s linear infinite;
 }
 
+.hero-wheel::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 17%;
+  aspect-ratio: 1 / 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #2a2e36 0%, #11141a 58%, #05070b 100%);
+  box-shadow:
+    inset 0 0 0 2px rgba(225, 229, 236, 0.25),
+    0 0 0 1px rgba(8, 10, 14, 0.7);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.hero-wheel::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 15.5%;
+  aspect-ratio: 1 / 1;
+  transform: translate(-50%, -50%);
+  background: url('/logo.png') center / contain no-repeat;
+  border-radius: 50%;
+  z-index: 3;
+  pointer-events: none;
+}
+
 .hero-wheel-img {
   width: 100%;
   height: 100%;
@@ -722,8 +751,8 @@ nav ul a:hover {
   display: block;
   margin-top: -50px;
   text-align: center;
-  font-size: 11px;
-  letter-spacing: 0.08em;
+  font-size: 12px;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--white);
 }
@@ -743,8 +772,8 @@ nav ul a:hover {
 
 .hero-tag {
   display: inline-block;
-  font-size: 11px;
-  letter-spacing: 0.2em;
+  font-size: 12px;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--orange);
   border: 1px solid var(--orange);
@@ -757,9 +786,9 @@ nav ul a:hover {
 }
 
 .hero-title {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Russo One', sans-serif;
   font-size: clamp(68px, 7.2vw, 112px);
-  line-height: 0.9;
+  line-height: 0.95;
   margin: 0;
   opacity: 0;
   animation: fade-up 0.8s 0.4s forwards;
@@ -837,7 +866,7 @@ nav ul a:hover {
 }
 
 .stat-num {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Russo One', sans-serif;
   font-size: 48px;
 }
 
@@ -846,10 +875,10 @@ nav ul a:hover {
 }
 
 .stat-label {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--muted);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.06em;
 }
 
 @keyframes fade-up {
@@ -869,15 +898,15 @@ section {
 }
 
 .section-tag {
-  font-size: 11px;
-  letter-spacing: 0.2em;
+  font-size: 12px;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--orange);
   margin-bottom: 16px;
 }
 
 .section-title {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Russo One', sans-serif;
   font-size: clamp(42px, 5vw, 72px);
   line-height: 1;
   margin: 0;
@@ -971,7 +1000,7 @@ section {
 }
 
 .service-num {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Russo One', sans-serif;
   font-size: 72px;
   color: rgba(255, 255, 255, 0.04);
   position: absolute;
@@ -1077,7 +1106,7 @@ section {
 }
 
 .brand-name {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Russo One', sans-serif;
   font-size: 22px;
   letter-spacing: 0.1em;
   color: rgba(255, 255, 255, 0.3);
@@ -1108,9 +1137,9 @@ section {
 }
 
 .brand-origin {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--muted);
-  letter-spacing: 0.1em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   margin-top: 4px;
 }
@@ -1162,7 +1191,7 @@ section {
 }
 
 .store-num {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Russo One', sans-serif;
   font-size: 32px;
   color: var(--orange);
 }
@@ -1235,7 +1264,7 @@ section {
   right: -20px;
   top: 50%;
   transform: translateY(-50%);
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Russo One', sans-serif;
   font-size: 200px;
   color: rgba(255, 255, 255, 0.02);
   letter-spacing: -0.05em;
@@ -1314,8 +1343,8 @@ section {
   background: rgba(10, 10, 10, 0.84);
   border: 1px solid rgba(255, 255, 255, 0.15);
   padding: 8px 14px;
-  font-size: 10px;
-  letter-spacing: 0.14em;
+  font-size: 11px;
+  letter-spacing: 0.08em;
   color: rgba(255, 255, 255, 0.82);
   z-index: 2;
 }
@@ -1331,15 +1360,15 @@ section {
 }
 
 .about-info-kicker {
-  font-size: 10px;
-  letter-spacing: 0.14em;
+  font-size: 11px;
+  letter-spacing: 0.08em;
   color: var(--orange);
   margin-bottom: 8px;
   text-transform: uppercase;
 }
 
 .about-info-title {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Russo One', sans-serif;
   font-size: 34px;
   letter-spacing: 0.03em;
   line-height: 1;
@@ -1363,16 +1392,16 @@ section {
 }
 
 .about-accent-num {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Russo One', sans-serif;
   font-size: 48px;
   line-height: 1;
 }
 
 .about-accent-label {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.05em;
 }
 
 .about-lead {
@@ -1425,7 +1454,7 @@ section {
 }
 
 .review-quote {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Russo One', sans-serif;
   font-size: 72px;
   color: var(--orange);
   opacity: 0.3;
@@ -1458,7 +1487,7 @@ section {
 }
 
 .review-date {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--muted);
 }
 
@@ -1476,7 +1505,7 @@ section {
 }
 
 .cta-title {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Russo One', sans-serif;
   font-size: clamp(52px, 7vw, 96px);
   margin: 0;
   position: relative;
@@ -1519,7 +1548,7 @@ section {
   padding: 16px 30px;
   font-size: 13px;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   text-decoration: none;
 }
@@ -1585,13 +1614,13 @@ footer {
 .footer-links a {
   color: var(--muted);
   text-decoration: none;
-  font-size: 12px;
-  letter-spacing: 0.08em;
+  font-size: 13px;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
 .footer-copy {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--muted);
   text-align: right;
   display: flex;
@@ -1896,7 +1925,7 @@ footer {
     color: #0c0d10;
     text-decoration: none;
     text-transform: uppercase;
-    letter-spacing: 0.10em;
+    letter-spacing: 0.06em;
     font-size: 11px;
     font-weight: 800;
     box-shadow: 0 10px 24px rgba(255, 77, 0, 0.28);
@@ -1998,8 +2027,8 @@ footer {
   }
 
   .logo-subtitle {
-    font-size: 7px;
-    letter-spacing: 0.04em;
+    font-size: 8px;
+    letter-spacing: 0.02em;
     line-height: 1.25;
     max-width: 170px;
   }
