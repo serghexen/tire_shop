@@ -704,10 +704,10 @@ nav ul a:hover {
   aspect-ratio: 1 / 1;
   transform: translate(-50%, -50%);
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #2a2e36 0%, #11141a 58%, #05070b 100%);
+  background: radial-gradient(circle at 35% 30%, #ffffff 0%, #f7f8fb 68%, #e8ebf0 100%);
   box-shadow:
-    inset 0 0 0 2px rgba(225, 229, 236, 0.25),
-    0 0 0 1px rgba(8, 10, 14, 0.7);
+    inset 0 0 0 1px rgba(255, 255, 255, 0.75),
+    0 0 0 2px rgba(18, 22, 30, 0.66);
   z-index: 2;
   pointer-events: none;
 }
