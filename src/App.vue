@@ -432,7 +432,7 @@ onBeforeUnmount(() => {
         <div class="about-img-side reveal">
           <div class="about-img-box">
             <div class="about-service-visual">
-              <img src="/about/wheel-building.jpg" alt="Колесо в сервисной зоне" class="about-service-photo" loading="lazy" />
+              <img src="/about/wheel-building.jpeg" alt="Колесо в сервисной зоне" class="about-service-photo" loading="lazy" />
               <div class="about-visual-tag">СЕРВИС · ШИНЫ · ДИСКИ</div>
             </div>
             <div class="about-info-panel">
