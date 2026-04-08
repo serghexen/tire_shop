@@ -756,7 +756,7 @@ nav ul a:hover {
 
 .hero-qr-hero-caption {
   display: block;
-  margin-top: -50px;
+  margin-top: -5px;
   text-align: center;
   font-size: 12px;
   letter-spacing: 0.05em;
