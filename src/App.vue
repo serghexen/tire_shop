@@ -289,12 +289,12 @@ onBeforeUnmount(() => {
         </div>
         <a
           class="hero-qr-hero"
-          href="https://t.me/AVTOREAL_735_BOT"
+          href="https://app.avtoreal.su/api/r/catalog"
           target="_blank"
           rel="noopener noreferrer"
           @click="trackTelegramCatalogClick"
         >
-          <img src="/hero/telegram-card-cropped.png" alt="QR для Telegram @AVTOREAL_735_BOT" class="hero-qr-hero-img" loading="lazy" />
+          <img src="/hero/telegram-card-cropped.png" alt="QR для Telegram" class="hero-qr-hero-img" loading="lazy" />
           <span class="hero-qr-hero-caption">Подбор шин и дисков 24/7</span>
         </a>
       </div>
@@ -309,7 +309,7 @@ onBeforeUnmount(() => {
         <a
           class="hero-telegram-mobile-btn"
           ref="heroTelegramButton"
-          href="https://t.me/AVTOREAL_735_BOT"
+          href="https://app.avtoreal.su/api/r/catalog"
           target="_blank"
           rel="noopener noreferrer"
           @click="trackTelegramCatalogClick"
@@ -520,7 +520,7 @@ onBeforeUnmount(() => {
     <a
       class="telegram-fab-mobile"
       :class="{ 'is-visible': showTelegramFab }"
-      href="https://t.me/AVTOREAL_735_BOT"
+      href="https://app.avtoreal.su/api/r/catalog"
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Открыть каталог в Telegram"
